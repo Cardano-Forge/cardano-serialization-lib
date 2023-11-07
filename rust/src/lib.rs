@@ -13,6 +13,7 @@ extern crate quickcheck;
 #[cfg(test)]
 #[macro_use(quickcheck)]
 extern crate quickcheck_macros;
+extern crate console_error_panic_hook;
 extern crate hex;
 
 use std::convert::TryInto;
@@ -75,6 +76,12 @@ use utils::*;
 use ser_info::types::*;
 
 type DeltaCoin = Int;
+
+/// Enable forwarding of panic messages to the JavaScript console.
+#[wasm_bindgen]
+pub fn set_console_error_panic_hook() {
+    console_error_panic_hook::set_once();
+}
 
 #[wasm_bindgen]
 #[derive(
